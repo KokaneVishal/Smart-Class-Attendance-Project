@@ -12,22 +12,22 @@ from firebase_admin import firestore
 
 json_file = glob.glob("other/*.json")
 if not json_file:
-  messagebox.showwarning("Warning", "Please add Firebase 'serviceAccountKey.json'. Add to 'other/' folder")
-  exit()
+    messagebox.showwarning("Warning", "Please add Firebase 'serviceAccountKey.json'. Add to 'other/' folder")
+    exit()
 
 cred = credentials.Certificate("other/smart-class-project-firebase-adminsdk-m2ou9-89a24d289d.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
-classes = ["Select Class","MCA", "MBA"]
+classes = ["Select Class", "MCA", "MBA"]
 
 window = tk.Tk()
 window.title("Train(add)")
-window.configure(background="black")
+window.configure(background="#E0F7FA")
 window.geometry("1280x670")
 window.resizable(0, 0)
 
-# Function to save user-details to FStore
+# Function to save user-details to Firestore
 def save_user_details(user_rollNo, user_fullName, user_email, user_class):
     user_data = {
         u'rollNo': user_rollNo,
@@ -38,9 +38,9 @@ def save_user_details(user_rollNo, user_fullName, user_email, user_class):
 
     try:
         db.collection(u'users').document(user_email).set(user_data)
-        print("User details saved to FStore.")
+        print("User details saved to Firestore.")
     except Exception as e:
-        print("Error while saving to FStore:", e)
+        print("Error while saving to Firestore:", e)
 
 def takeImages():
     if not os.path.exists("other/haarcascade_frontalface_default.xml"):
@@ -48,13 +48,13 @@ def takeImages():
         return
 
     if txt1.get() == "" or txt2.get() == "" or txt3.get() == "":
-        messagebox.showwarning("Warning", "Please Enter Id, Name, Email and Class first.")
+        messagebox.showwarning("Warning", "Please Enter Id, Name, Email, and Class first.")
         return
 
     if selected_class.get() == "Select Class":
         messagebox.showwarning("Warning", "Please select a class.")
         return
-    
+
     Id = txt1.get()
     name = txt2.get()
     email = txt3.get()
@@ -73,10 +73,10 @@ def takeImages():
                 cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
                 sampleNum = sampleNum + 1
                 cv2.imwrite(
-                    "SampleImages/ " + name + "." + Id + "." + str(sampleNum) + ".jpg",
-                    gray[y : y + h, x : x + w],
+                    "SampleImages/" + name + "." + Id + "." + str(sampleNum) + ".jpg",
+                    gray[y: y + h, x: x + w],
                 )
-                cv2.imshow("Face Detecting(Q-for-Quit)", img)
+                cv2.imshow("Face Detecting (Q for Quit)", img)
             if cv2.waitKey(100) & 0xFF == ord("q"):
                 break
             elif sampleNum > 100:
@@ -92,16 +92,16 @@ def takeImages():
                 print("(StudentRecord.csv) exists with correct columns")
             else:
                 print("Columns don't match")
-                  # Add missing columns
+                # Add missing columns
                 for col in col_names:
                     if col not in existing_df.columns:
                         existing_df[col] = None  # You can initialize with a default value if needed
-        
+
                 # Remove extra columns
                 for col in existing_df.columns:
                     if col not in col_names:
                         existing_df.drop(columns=col, inplace=True)
-        
+
                 # Save the modified DataFrame back to the CSV file
                 existing_df.to_csv(file_path, index=False)
                 print("(StudentRecord.csv) modified successfully.")
@@ -109,8 +109,9 @@ def takeImages():
             df = pd.DataFrame(columns=col_names)
             df.to_csv(file_path, index=False)
 
-        res = " Images Saved and Data uploaded to FStore."
+        res = "Images Saved and Data uploaded to Firestore."
         messagebox.showinfo("Result", res)
+
         row = [Id, name, email, userClass]
         with open(file_path, "a+") as csvFile:
             writer = csv.writer(csvFile)
@@ -119,7 +120,7 @@ def takeImages():
         message.configure(text=res)
 
         save_user_details(Id, name, email, userClass)
-        message.configure(text=res)       
+        message.configure(text=res)
     else:
         if isNumber(name):
             res = "Enter Alphabetical Name"
@@ -140,9 +141,7 @@ def getImagesAndLabels(path):
         Ids.append(Id)
     return faces, Ids
 
-
 def trainImages():
-    txt3.delete(0, "end")
     if txt1.get() == "" or txt2.get() == "":
         messagebox.showwarning("Warning", "Please Enter Id and Name first.")
         return
@@ -164,13 +163,11 @@ def trainImages():
     message.configure(text=res)
     print("Image Trained")
 
-
-
 # GUI
 lbl = tk.Label(
     window,
     text="Face Recognition Based Smart Class Attendance Project",
-    bg="white",
+    bg="#FFEB3B",
     fg="black",
     width=50,
     height=2,
@@ -184,12 +181,12 @@ lbl1 = tk.Label(
     width=20,
     height=2,
     fg="black",
-    bg="white",
-    font=("times", 15, " bold "),
+    bg="#FFEB3B",
+    font=("times", 15, "bold"),
 )
 lbl1.place(x=260, y=250)
 
-txt1 = tk.Entry(window, width=20, bg="white", fg="black", font=("times", 17, " bold "))
+txt1 = tk.Entry(window, width=20, bg="#FFFFFF", fg="black", font=("times", 17, "bold"))
 txt1.insert(0, "")
 txt1.place(x=510, y=255)
 
@@ -198,13 +195,13 @@ lbl2 = tk.Label(
     text="Enter Name :",
     width=20,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 lbl2.place(x=260, y=310)
 
-txt2 = tk.Entry(window, width=20, bg="white", fg="black", font=("times", 17, " bold "))
+txt2 = tk.Entry(window, width=20, bg="#FFFFFF", fg="black", font=("times", 17, "bold"))
 txt2.insert(0, "")
 txt2.place(x=510, y=315)
 
@@ -213,13 +210,13 @@ lbl3 = tk.Label(
     text="Enter Email :",
     width=20,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 lbl3.place(x=260, y=370)
 
-txt3 = tk.Entry(window, width=20, bg="white", fg="black", font=("times", 17, " bold "))
+txt3 = tk.Entry(window, width=20, bg="#FFFFFF", fg="black", font=("times", 17, "bold"))
 txt3.insert(0, "")
 txt3.place(x=510, y=375)
 
@@ -228,16 +225,16 @@ lbl4 = tk.Label(
     text="Enter Class :",
     width=20,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 lbl4.place(x=260, y=430)
 
 selected_class = tk.StringVar(window)
 selected_class.set(classes[0])  # default value
 class_dropdown = tk.OptionMenu(window, selected_class, *classes)
-class_dropdown.config(width=15, font=("times", 15, " bold "))
+class_dropdown.config(width=15, font=("times", 15, "bold"), bg="#FFFFFF", fg="black")
 class_dropdown.place(x=510, y=435)
 
 lbl5 = tk.Label(
@@ -245,29 +242,27 @@ lbl5 = tk.Label(
     text="Notification =>",
     width=20,
     fg="black",
-    bg="#FFD0C5",
+    bg="#B3E5FC",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 lbl5.place(x=210, y=150)
 
 message = tk.Label(
     window,
     text="",
-    bg="#FFD0C5",
+    bg="#B3E5FC",
     fg="black",
     width=55,
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 message.place(x=490, y=150)
-    
 
 def cleaFields():
     txt1.delete(0, "end")
     txt2.delete(0, "end")
     txt3.delete(0, "end")
-
 
 def isNumber(s):
     try:
@@ -276,58 +271,56 @@ def isNumber(s):
     except ValueError:
         pass
 
-
 clearButton2 = tk.Button(
     window,
     text="Clear",
     command=cleaFields,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     width=15,
     height=1,
     activebackground="Red",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 clearButton2.place(x=780, y=315)
 
 takeImg = tk.Button(
     window,
-    text="(1)Take Images",
+    text="(1) Take Images",
     command=takeImages,
     fg="black",
-    bg="white",
+    bg="#8BC34A",
     width=20,
     height=3,
     activebackground="Green",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 takeImg.place(x=200, y=530)
 
 trainImg = tk.Button(
     window,
-    text="(2)Train Images",
+    text="(2) Train Images",
     command=trainImages,
     fg="black",
-    bg="white",
+    bg="#FFC107",
     width=20,
     height=3,
     activebackground="Yellow",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 trainImg.place(x=500, y=530)
 
 quitWindow = tk.Button(
     window,
-    text="Quit:/",
+    text="Quit",
     command=window.destroy,
     fg="black",
-    bg="white",
+    bg="#FF5252",
     width=20,
     height=3,
     activebackground="Red",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 quitWindow.place(x=800, y=530)
 
 window.mainloop()
-
