@@ -10,8 +10,8 @@ from tkinter import messagebox
 
 json_file = glob.glob("other/*.json")
 if not json_file:
-  messagebox.showwarning("Warning", "Please add Firebase 'serviceAccountKey.json'. Add to 'other/' folder")
-  exit()
+    messagebox.showwarning("Warning", "Please add Firebase 'serviceAccountKey.json'. Add to 'other/' folder")
+    exit()
 
 # Initialize Firebase
 cred = credentials.Certificate("other/smart-class-project-firebase-adminsdk-m2ou9-89a24d289d.json")
@@ -21,15 +21,14 @@ firebase_admin.initialize_app(cred, {
 
 db = firestore.client()
 bucket = storage.bucket()
-subjects = ["Select Subject","Java", "Python", "CPP", "PHP", "JS", "DBMS", "DSA","AI" "Account", "GK","management","HR", "Marketing","Cyber Security"]
+subjects = ["Select Subject", "Java", "Python", "CPP", "PHP", "JS", "DBMS", "DSA", "AI", "Account", "GK", "Management", "HR", "Marketing", "Cyber Security"]
 classes = ["Select Class", "MCA", "MBA"]
 
 window = tk.Tk()
-window.title("Track(attendance)")
-window.configure(background="black")
+window.title("Track Attendance")
+window.configure(background="#E0F7FA")
 window.geometry("1280x670")
 window.resizable(0, 0)
-
 
 def trackImages():
     if not os.path.exists("DataSet/Trainner.yml"):
@@ -106,8 +105,7 @@ def trackImages():
             cv2.putText(im, str(tt), (x, y + h), font, 1, (255, 255, 255), 2)
             recognized_ids.append(Id)
 
-
-        cv2.imshow("Face Recognizing(Q-for-Quit)", im)
+        cv2.imshow("Face Recognizing (Q for Quit)", im)
         pass
 
         if cv2.waitKey(1) & 0xFF == ord("q"):
@@ -142,7 +140,7 @@ def trackImages():
         doc_ref.set({
             'name': fileName,
             'url': download_url
-    })
+        })
         print("CSV file path saved to Cloud Firestore.")
 
     except Exception as e:
@@ -160,40 +158,39 @@ lecture_label = tk.Label(
     text="Select Subject:",
     width=20,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 lecture_label.place(x=150, y=150)
 
 selected_subject = tk.StringVar(window)
 selected_subject.set(subjects[0])
 subject_dropdown = tk.OptionMenu(window, selected_subject, *subjects)
-subject_dropdown.config(width=15, font=("times", 15, " bold "))
+subject_dropdown.config(width=15, font=("times", 15, "bold"), bg="#FFFFFF", fg="black")
 subject_dropdown.place(x=390, y=155)
-
 
 class_label = tk.Label(
     window,
     text="Select Class:",
     width=20,
     fg="black",
-    bg="white",
+    bg="#FFEB3B",
     height=2,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 class_label.place(x=150, y=200)
 
 selected_class = tk.StringVar(window)
 selected_class.set(classes[0])  # default value
 class_dropdown = tk.OptionMenu(window, selected_class, *classes)
-class_dropdown.config(width=15, font=("times", 15, " bold "))
+class_dropdown.config(width=15, font=("times", 15, "bold"), bg="#FFFFFF", fg="black")
 class_dropdown.place(x=390, y=205)
 
 lbl = tk.Label(
     window,
     text="Face Recognition Based Smart Class Attendance Project",
-    bg="white",
+    bg="#FFEB3B",
     fg="black",
     width=50,
     height=2,
@@ -201,15 +198,14 @@ lbl = tk.Label(
 )
 lbl.place(x=130, y=20)
 
-
 lbl1 = tk.Label(
     window,
     text="↓ List Of Students ↓",
     width=110,
     fg="black",
-    bg="white",
+    bg="#B3E5FC",
     height=2,
-    font=("times", 15, " bold"),
+    font=("times", 15, "bold"),
 )
 lbl1.place(x=120, y=300)
 
@@ -217,41 +213,38 @@ message = tk.Label(
     window,
     text="",
     fg="black",
-    bg="white",
+    bg="#B3E5FC",
     activeforeground="green",
     width=100,
     height=12,
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 message.place(x=140, y=390)
 
-
 trackImg = tk.Button(
     window,
-    text="(0)Track Image",
+    text="(0) Track Image",
     command=trackImages,
     fg="black",
-    bg="white",
+    bg="#8BC34A",
     width=20,
     height=3,
     activebackground="Green",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 trackImg.place(x=650, y=160)
 
 quitWindow = tk.Button(
     window,
-    text="Quit:/",
+    text="Quit",
     command=window.destroy,
     fg="black",
-    bg="white",
+    bg="#FF5252",
     width=20,
     height=3,
     activebackground="Red",
-    font=("times", 15, " bold "),
+    font=("times", 15, "bold"),
 )
 quitWindow.place(x=930, y=160)
 
 window.mainloop()
-
-
