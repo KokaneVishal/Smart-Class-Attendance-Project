@@ -188,4 +188,3 @@ for image_file in image_files:
     except Exception as e:
         print(f'Error uploading report image: {e}')
 
-
