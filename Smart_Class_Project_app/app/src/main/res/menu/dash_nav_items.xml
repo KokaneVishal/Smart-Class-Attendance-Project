@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dash"
+            android:title="Dashboard"
+            android:checked="true"
+            android:icon="@drawable/outline_dashboard_24" />
+        <item
+            android:id="@+id/nav_files"
+            android:title="View Attendance"
+            android:icon="@drawable/outline_view_files_24" />
+        <item
+            android:id="@+id/nav_notice"
+            android:title="Notice"
+            android:icon="@drawable/baseline_error_outline_24" />
+        <item
+            android:id="@+id/nav_notes"
+            android:title="Study Notes"
+            android:icon="@drawable/baseline_notes_24" />
+        <item
+            android:id="@+id/nav_assignment"
+            android:title="Assignment"
+            android:icon="@drawable/outline_book_24" />
+        <item
+            android:id="@+id/nav_analysis"
+            android:title="Attendance Analysis"
+            android:icon="@drawable/outline_analytics_24" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:title="Logout"
+            android:icon="@drawable/outline_logout_24" />
+    </group>
+
+    <item android:title="More...">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_about"
+                    android:title="About "
+                    android:icon="@drawable/baseline_help_outline_24" />
+                <item
+                    android:id="@+id/nav_feedback"
+                    android:title="Feedback"
+                    android:icon="@drawable/outline_feedback_24" />
+            </group>
+        </menu>
+    </item>
+
+    <item
+        android:title=""
+        android:enabled="false"
+        android:checkable="false" />
+
+    <item
+        android:id="@+id/nav_version"
+        android:title="app version"
+        android:enabled="false"
+        android:checkable="false" />
+</menu>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="10sp"
+    android:background="@drawable/style_round_corner">
+
+    <ImageView
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_marginTop="30sp"
+        android:contentDescription="@string/app_logo"
+        app:srcCompat="@drawable/app_logo1"
+        android:layout_marginStart="10sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10sp"
+        android:text="@string/app_name" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/tv_navHeadEmail"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="10sp"-->
+    <!--        android:layout_marginTop="1sp"-->
+    <!--        android:text="Welcome !" />-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="10sp"
+        android:background="?android:attr/listDivider"
+        tools:ignore="SmallSp" />
+
+</LinearLayout>

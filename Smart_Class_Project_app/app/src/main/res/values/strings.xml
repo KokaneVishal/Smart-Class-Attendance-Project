@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">Smart Class Project</string>
+    <string name="app_logo">App logo Image </string>
+    <string name="remember_login_cred">Remember <b>Email</b> and <b>Password</b> for Login</string>
+    <string name="ImgReport">App logo Image</string>
+    <string name="mkeEmailAdmin">Add Email of User to make him <b>Admin</b> </string>
+    <string name="copyrightText">Copyright © 2024</string>
+    <string name="developerWebsite">https://www.google.com</string>
+    <string name="developerName">Developer : Kokane Vishal</string>
+    <string name="aboutText">About Us</string>
+
+    <string name="aboutTxt"><![CDATA[Attendance Tracking : App uses OpenCV to track student attendance via camera and displays it in the Android app. \n\nNotice Board : Teachers can post notices for students, ensuring important information is easily accessible. \n\nStudy Notes Sharing : Teachers share study materials directly through the app for student access. \n\nCollege Info : Information page provides details about the college, its facilities, and contact information. \n\nHelp & Feedback : Students can seek help and provide feedback for app improvement. \n\nFile Upload : Admins upload files like attendance records and notices for easy access.]]></string>
+
+    <string name="help_dialog">Smart Class Project \nWelcome to the Smart Class Project!\n\n1. Registration:\nCreate your account by entering your details in the registration form.\nProvide your Roll No, Full Name, Email, Password, and Class.\nClick \"Register\" to complete the process.\n2. Login:\nUse your registered email and password to log in.\nEnter your credentials on the login screen.\nClick \"Login\" to access your account.\n3. Dashboard:\nUpon login, you\'ll see the dashboard with options based on your role (Admin/Student).\nAdmins have additional features for user management and content upload.\n4. Features:\nAdmins can manage users and upload content.\nStudents can view notices, study materials, and attendance records.\n5. Logging Out:\nTo log out, go to settings or profile and select \"Logout\".\n6. Need Help?\nContact support for assistance or check the FAQs for common questions.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string-array name="class_array">
+        <item>Class</item>
+        <item>MCA</item>
+        <item>MBA</item>
+    </string-array>
+
+</resources>
+
